@@ -1,5 +1,5 @@
 const { default: axios } = require("axios");
 
-const clientServer = axios({
+export const clientServer = axios({
   baseURL: "http://localhost:2018",
 });
