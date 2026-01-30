@@ -1,13 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser } from "../../action/authAction";
-
+import { loginUser, registerUsre } from "../../action/authAction";
 
 const initialState = {
   user: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
-  loggedId: false,
+  loggedIn: false,
   message: "",
   profileFetched: false,
   connections: [],
@@ -18,26 +17,53 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    reducers: {
-      reset: () => initialState,
-      handleLoginUser: (state) => {
-        state.message = "hello";
-      },
-      //   loadingUser: async (user) => {
-      //     const request = axios.post("/login", {});
-      //     const response = [];
-      //       state.user = request.data.token;
-      //       local
-      //   },
+    reset: () => initialState,
+    handleLoginUser: (state) => {
+      state.message = "hello";
+    },
+    //   loadingUser: async (user) => {
+    //     const request = axios.post("/login", {});
+    //     const response = [];
+    //       state.user = request.data.token;
+    //       local
+    //   },
 
-      extreReducers: (builder) => {
-        builder
-          .addCase(loginUser.pending, (state) => {
-            state.isLoading = true;
-            state.message = "knocking the door...";
-          })
-          .addCase(loginUser.fullfilled, (state, action) => {});
-      },
+    extreReducers: (builder) => {
+      builder
+        .addCase(loginUser.pending, (state) => {
+          state.isLoading = true;
+          state.message = "knocking the door...";
+        })
+        .addCase(loginUser.fulfilled, (state, action) => {
+          state.isLoading = false;
+          state.isError = false;
+          state.isSuccess = true;
+          state.loggedIn = true;
+          state.message = "Login is successful";
+        })
+        .addCase(loginUser.rejected, (state, action) => {
+          state.isLoading = false;
+          state.isError = true;
+          state.message = action.payload;
+        })
+        .addCase(registerUsre.pending, (state) => {
+          state.isLoading = true;
+          state.message = "Registering you...";
+        })
+        .addCase(registerUsre.fulfilled, (state) => {
+          state.isLoading = false;
+          state.isError = false;
+          state.isSuccess = true;
+          state.loggedIn = true;
+          state.message = "Registration is successful";
+        })
+        .addCase(registerUsre.rejected, (state, action) => {
+          state.isLoading = false;
+          state.isError = true;
+          state.message = action.payload;
+        });
     },
   },
 });
+
+export default authSlice.reducer;
