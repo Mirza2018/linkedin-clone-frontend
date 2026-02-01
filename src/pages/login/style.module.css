@@ -1,0 +1,72 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90svh;
+  background-color: snow;
+}
+.cardContainer {
+  height: 80vh;
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 80vh;
+  background: white;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.35);
+}
+
+.cardContainer__left {
+  flex: 0.6;
+  padding: 2rem;
+  text-align: center;
+}
+.cardleft__heading {
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+.inputContainers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1.3rem;
+  max-width: 400px;
+  margin: 0 auto;
+  gap: 1.4rem;
+}
+.inputRow {
+  width: fit-content;
+  display: flex;
+  gap: 1.2rem;
+}
+.inputField {
+  padding-inline: 1.3rem;
+  padding-block: 0.8rem;
+  outline: none;
+  border-radius: 10px;
+  border: 1px solid silver;
+  margin: 4px;
+  width: 100%;
+}
+.buttonWithOutline {
+  width: fit-content;
+  cursor: pointer;
+  border: 1px solid sandybrown;
+  border-radius: 10px;
+  padding-inline: 1.5rem;
+  padding-block: 0.8rem;
+  background-color: sandybrown;
+  color: white;
+  transition: all 0.2s;
+  display: block;
+  width: 100%;
+  font: bold;
+}
+
+.cardContainer__right {
+  flex: 0.4;
+  background-color: rgba(4, 4, 165, 0.678);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

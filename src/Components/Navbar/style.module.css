@@ -1,0 +1,28 @@
+.conteiner {
+  padding: 1.2rem;
+}
+.navBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navBar h1 {
+  cursor: pointer;
+  user-select: none;
+}
+.navBarOptionContainer {
+  display: flex;
+}
+.buttonJoin {
+  width: fit-content;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s;
+  margin-top: 0.8rem;
+  font-size: 1.4rem;
+  background-color: rgb(224, 46, 75);
+  color: white;
+  padding-inline: 1.2rem;
+  padding-block: 0.7rem;
+  border-radius: 15px;
+}
