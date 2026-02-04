@@ -12,6 +12,6 @@ import authReducer from "./reducer/authReducer";
 
 export const store = configureStore({
   reducer: {
-    aurh: authReducer,
+    auth: authReducer,
   },
 });

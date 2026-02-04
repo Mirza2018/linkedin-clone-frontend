@@ -2,7 +2,7 @@ import { clientServer } from "@/config";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const loginUser = createAsyncThunk(
-  "users/login",
+  "users/login", 
   async (user, thunkAPI) => {
     try {
       const response = await clientServer.post("/login", {

@@ -10,7 +10,7 @@
   display: flex;
   border-radius: 10px;
   overflow: hidden;
-  width: 80vh;
+  /* width: 80vh; */
   background: white;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.35);
 }
@@ -66,7 +66,14 @@
 .cardContainer__right {
   flex: 0.4;
   background-color: rgba(4, 4, 165, 0.678);
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+    color:white  ;
+    align-items: center;
+    flex-direction:column ;
+    gap:1.2rem;
+    padding: initial;
 }

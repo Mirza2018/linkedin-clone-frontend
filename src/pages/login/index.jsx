@@ -1,10 +1,11 @@
 import UserLayout from "@/layout/UserLayout";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import style from "./style.module.css";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { registerUser } from "@/config/redux/action/authAction";
+import { loginUser, registerUser } from "@/config/redux/action/authAction";
+import { emptyMessage } from "@/config/redux/reducer/authReducer";
 const LoginComponent = () => {
   const authState = useSelector((state) => state.auth);
   const router = useRouter();
@@ -18,11 +19,16 @@ const LoginComponent = () => {
     if (authState?.loggedIn) {
       router.push("/dashboard");
     }
-  });
+  }, [authState?.loggedIn, router]);
+  useEffect(() => {
+    dispatch(emptyMessage());
+  }, [userLoginMethod]);
+  console.log(authState);
 
   const handelRegister = () => {
     console.log("clicked Register");
-    
+   
+
     dispatch(
       registerUser({
         userName,
@@ -32,6 +38,21 @@ const LoginComponent = () => {
       }),
     );
   };
+
+  const handleIogin = () => {
+    console.log("Clicked login");
+    
+    dispatch(
+      loginUser({
+        email,
+        password,
+      }),
+    );
+  };
+const displayMessage =
+  typeof authState?.message === "string"
+    ? authState.message
+    : authState?.message?.message;
   return (
     <UserLayout>
       <div className={style.container}>
@@ -40,26 +61,30 @@ const LoginComponent = () => {
             <p className={style.cardleft__heading}>
               {userLoginMethod ? "Sign In" : "Sign Up"}
             </p>
-
+            <p style={{ color: authState.isError ? "red" : "green" }}>
+              {displayMessage}
+            </p>
             <div className={style.inputContainers}>
-              <div className={style.inputRow}>
-                <input
-                  onChange={(e) => {
-                    setUserName(e.target.value);
-                  }}
-                  className={style.inputField}
-                  type="text"
-                  placeholder="User Name"
-                />
-                <input
-                  onChange={(e) => {
-                    setName(e.target.value);
-                  }}
-                  className={style.inputField}
-                  type="text"
-                  placeholder="Name"
-                />
-              </div>
+              {!userLoginMethod && (
+                <div className={style.inputRow}>
+                  <input
+                    onChange={(e) => {
+                      setUserName(e.target.value);
+                    }}
+                    className={style.inputField}
+                    type="text"
+                    placeholder="User Name"
+                  />
+                  <input
+                    onChange={(e) => {
+                      setName(e.target.value);
+                    }}
+                    className={style.inputField}
+                    type="text"
+                    placeholder="Name"
+                  />
+                </div>
+              )}
 
               <input
                 onChange={(e) => {
@@ -80,6 +105,7 @@ const LoginComponent = () => {
               <div
                 onClick={() => {
                   if (userLoginMethod) {
+                    handleIogin();
                   } else {
                     handelRegister();
                   }
@@ -91,7 +117,25 @@ const LoginComponent = () => {
             </div>
           </div>
 
-          <div className={style.cardContainer__right}></div>
+          <div className={style.cardContainer__right}>
+            <div>
+              {userLoginMethod ? (
+                <p>Don't have an account?</p>
+              ) : (
+                <p>Already have an account?</p>
+              )}
+
+              <div
+                onClick={() => {
+                  setUserLoginMethod(!userLoginMethod);
+                }}
+                style={{ color: "black", textAlign: "center" }}
+                className={style.buttonWithOutline}
+              >
+                <p>{!userLoginMethod ? "Sign In" : "Sign UP"}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </UserLayout>

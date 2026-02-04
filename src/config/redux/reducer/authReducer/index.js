@@ -21,6 +21,9 @@ const authSlice = createSlice({
     handleLoginUser: (state) => {
       state.message = "hello";
     },
+    emptyMessage: (state) => {
+      state.message = "";
+    },
     //   loadingUser: async (user) => {
     //     const request = axios.post("/login", {});
     //     const response = [];
@@ -28,7 +31,7 @@ const authSlice = createSlice({
     //       local
     //   },
   },
-  extreReducers: (builder) => {
+  extraReducers: (builder) => {
     builder
       .addCase(loginUser.pending, (state) => {
         state.isLoading = true;
@@ -55,14 +58,18 @@ const authSlice = createSlice({
         state.isError = false;
         state.isSuccess = true;
         state.loggedIn = true;
-        state.message = "Registration is successful";
+        state.message = {
+          message: "Registration is successful, Please Login",
+        };
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        state.message = action.payload;
+        state.message = action.payload || "Registration failed";
       });
   },
 });
+
+export const {reset, handleLoginUser, emptyMessage} = authSlice.actions;
 
 export default authSlice.reducer;
