@@ -1,3 +1,4 @@
+import { getAboutUser } from "@/config/redux/action/authAction";
 import { getAllPosts } from "@/config/redux/action/postAction";
 import { useRouter } from "next/navigation";
 import React, { use, useEffect } from "react";
@@ -16,6 +17,7 @@ const Dadhboard = () => {
   useEffect(() => {
     if (isTokenThere) {
       dispatch(getAllPosts());
+      dispatch(getAboutUser({ token: localStorage.getItem("token") }));
     }
   }, [isTokenThere]);
   return <div>Dashboard</div>;

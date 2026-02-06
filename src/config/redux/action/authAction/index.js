@@ -2,7 +2,7 @@ import { clientServer } from "@/config";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const loginUser = createAsyncThunk(
-  "users/login", 
+  "users/login",
   async (user, thunkAPI) => {
     try {
       const response = await clientServer.post("/login", {
@@ -21,7 +21,6 @@ export const loginUser = createAsyncThunk(
       return thunkAPI.fulfillWithValue(response.data.token);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response?.data || error.message);
-
     }
   },
 );
@@ -39,7 +38,28 @@ export const registerUser = createAsyncThunk(
       return request.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response?.data || error.message);
+    }
+  },
+);
 
+export const getAboutUser = createAsyncThunk(
+  "user/getAboutUser",
+  async (user, thunkAPI) => {
+    try {
+      const response = await clientServer.get("/user_details", {
+        // params: {
+        //   token: user.token,
+        // },
+        headers:{
+                    // token: user.token,
+                    Token: user.token,
+                    // Authorization: user.token,
+                    // authorization: user.token,
+        }
+      });
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data || error.messaeg);
     }
   },
 );
