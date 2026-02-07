@@ -1,8 +1,10 @@
 import React from "react";
 import styles from "./style.module.css";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 const NavbarComponent = () => {
   const router = useRouter();
+  const authState = useSelector((state) => state.auth);
   return (
     <div className={styles.conteiner}>
       <nav className={styles.navBar}>
@@ -15,16 +17,23 @@ const NavbarComponent = () => {
         </h1>
 
         <div className={styles.navBarOptionContainer}>
-
- 
-        <div
-          onClick={() => {
-            router.push("/login");
-          }}
-          className={styles.buttonJoin}
-        >
-          <p>Be a part</p>
-        </div>       </div>
+          {authState?.profileFetched && (
+            <div style={{ display: "flex", gap: "1.2rem" }}>
+              <p>Hey , {authState?.user?.userId?.name}</p>
+              <p style={{ fontWeight: "bold", cursor: "pointer" }}>Profile</p>
+            </div>
+          )}
+          {!authState?.profileFetched && (
+            <div
+              onClick={() => {
+                router.push("/login");
+              }}
+              className={styles.buttonJoin}
+            >
+              <p>Be a part</p>
+            </div>
+          )}
+        </div>
       </nav>
     </div>
   );

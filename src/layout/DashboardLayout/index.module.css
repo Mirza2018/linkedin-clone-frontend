@@ -1,0 +1,12 @@
+.homeContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+.homeContainer_left{}
+.homeContainer__feedContainer{}
+.homeContainer__extrecontainer{}
