@@ -2,7 +2,7 @@ import UserLayout from "@/layout/UserLayout";
 import React, { use, useEffect, useState } from "react";
 import style from "./style.module.css";
 import { useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { loginUser, registerUser } from "@/config/redux/action/authAction";
 import { emptyMessage } from "@/config/redux/reducer/authReducer";

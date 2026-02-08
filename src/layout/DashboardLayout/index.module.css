@@ -1,12 +1,36 @@
-.homeContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.homeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.homeContainer > div:nth-child(odd) {
+  flex: 0.2;
+}
+.homeContainer > div:nth-child(even) {
+  flex: 0.6;
 }
 
-
-
-
-.homeContainer_left{}
-.homeContainer__feedContainer{}
-.homeContainer__extrecontainer{}
+.homeContainer_left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: start;
+}
+.sideBarOption {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  gap: 1.3rem;
+  cursor: pointer;
+  margin: 0 auto;
+}
+.sideBarOption svg {
+  height: 1.4em;
+}
+.sideBarOption:hover {
+ transform: scale(1.06);
+  transition: transform 0.3s ease;}
+.homeContainer__feedContainer {
+}
+.homeContainer__extrecontainer {
+}

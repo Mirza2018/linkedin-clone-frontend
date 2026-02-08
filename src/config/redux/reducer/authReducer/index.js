@@ -8,6 +8,7 @@ const initialState = {
   isLoading: false,
   loggedIn: false,
   message: "",
+  isTokenThere: false,
   profileFetched: false,
   connections: [],
   connectionRequest: [],
@@ -23,6 +24,12 @@ const authSlice = createSlice({
     },
     emptyMessage: (state) => {
       state.message = "";
+    },
+    setTokenIsThere: (state) => {
+      state.isTokenThere = true;
+    },
+    setTokenIsNotThere: (state) => {
+      state.isTokenThere = false;
     },
     //   loadingUser: async (user) => {
     //     const request = axios.post("/login", {});
@@ -76,6 +83,12 @@ const authSlice = createSlice({
   },
 });
 
-export const { reset, handleLoginUser, emptyMessage } = authSlice.actions;
+export const {
+  reset,
+  handleLoginUser,
+  emptyMessage,
+  setTokenIsThere,
+  setTokenIsNotThere,
+} = authSlice.actions; 
 
 export default authSlice.reducer;
