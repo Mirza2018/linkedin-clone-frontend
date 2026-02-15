@@ -57,7 +57,19 @@ export const getAboutUser = createAsyncThunk(
       });
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data || error.messaeg);
+      return thunkAPI.rejectWithValue(error.response.data || error.message);
+    }
+  },
+);
+
+export const getAllUsers = createAsyncThunk(
+  "user/getAllUsers",
+  async (_, thunkAPI) => {
+    try {
+      const response = await clientServer.get("/all_profile");
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data || error.message);
     }
   },
 );

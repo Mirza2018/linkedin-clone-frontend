@@ -1,14 +1,14 @@
 import DasnboardLayout from '@/layout/DashboardLayout';
 import React from 'react';
 
-const DiscoverPage = () => {
+const MYConnections = () => {
     return (
       <DasnboardLayout>
         <div>
-          <h1>Discover</h1>
+          <h1>MY Connections</h1>
         </div>
       </DasnboardLayout>
     );
 };
 
-export default DiscoverPage;
+export default MYConnections;

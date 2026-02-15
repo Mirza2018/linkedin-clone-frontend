@@ -1,15 +1,27 @@
+import { getAllUsers } from '@/config/redux/action/authAction';
 import DasnboardLayout from '@/layout/DashboardLayout';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-const MyConnectionsPage = () => {
-    return (
+const Discover = () => {
+  const authState = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
-        <DasnboardLayout>
-          <div>
-            <h1>My Connections</h1>
-          </div>
-        </DasnboardLayout>
+  useEffect(() => {
+    if (!authState.usersProfileFetched) {
+      dispatch(getAllUsers());
+    }
+  }, []);
 
-    );
+
+  return (
+    <DasnboardLayout>
+      <div>
+        <h1>Discover</h1>
+      </div>
+    </DasnboardLayout>
+  );
 };
 
-export default MyConnectionsPage;
+export default Discover;

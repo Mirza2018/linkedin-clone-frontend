@@ -6,7 +6,7 @@ export const getAllPosts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await clientServer.get("/posts");
-      return thunkAPI.fulfillWithValue  (response.data);
+      return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data || error.message);
     }

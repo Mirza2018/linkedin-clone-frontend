@@ -5,7 +5,7 @@ import UserLayout from "../UserLayout";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { getAllPosts } from "@/config/redux/action/postAction";
-import { getAboutUser } from "@/config/redux/action/authAction";
+import { getAboutUser, getAllUsers } from "@/config/redux/action/authAction";
 import { setTokenIsThere } from "@/config/redux/reducer/authReducer";
 import { useSelector } from "react-redux";
 
@@ -18,16 +18,14 @@ const DasnboardLayout = ({ children }) => {
     if (!localStorage.getItem("token")) {
       router.replace("/login");
     }
+    if (!authState.usersProfileFetched) {
+      dispatch(getAllUsers());
+    }
     dispatch(setTokenIsThere());
     // setTokenIsThere(true);
   });
+  console.log(authState.usersProfile);
 
-  useEffect(() => {
-    if (authState.isTokenThere) {
-      dispatch(getAllPosts());
-      dispatch(getAboutUser({ token: localStorage.getItem("token") }));
-    }
-  }, [authState.isTokenThere]);
   return (
     <UserLayout>
       <div className="container">
@@ -109,6 +107,10 @@ const DasnboardLayout = ({ children }) => {
           <div className={styles.homeContainer__feedContainer}>{children}</div>
           <div className={styles.homeContainer__extrecontainer}>
             <h3>Top profiles</h3>
+            {authState.usersProfile &&
+              authState.usersProfile.map((profile) => (
+                <div key={profile._id}>{profile.userId.name}</div>
+              ))}
           </div>
         </div>{" "}
       </div>
