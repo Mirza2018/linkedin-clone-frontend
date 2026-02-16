@@ -24,7 +24,7 @@ const DasnboardLayout = ({ children }) => {
     dispatch(setTokenIsThere());
     // setTokenIsThere(true);
   });
-  console.log(authState.usersProfile);
+  // console.log(authState.usersProfile);
 
   return (
     <UserLayout>

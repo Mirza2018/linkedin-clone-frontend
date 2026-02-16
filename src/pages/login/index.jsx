@@ -23,7 +23,7 @@ const LoginComponent = () => {
   useEffect(() => {
     dispatch(emptyMessage());
   }, [userLoginMethod]);
-  console.log(authState);
+  // console.log(authState);
 
   const handelRegister = () => {
     console.log("clicked Register");
