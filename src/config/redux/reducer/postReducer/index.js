@@ -28,23 +28,22 @@ const postsSlice = createSlice({
         state.isLoading = true;
         state.message = "Fetching all the posts...";
       })
-      .addCase(getAllPosts.fulfilled, (state,action) => {
+      .addCase(getAllPosts.fulfilled, (state, action) => {
         state.isError = false;
         state.postFetched = true;
         state.isSuccess = true;
         state.isLoading = false;
         state.isError = false;
-        state.post = action.payload.posts;
+        state.post = action.payload.posts.reverse();
         state.message = "Post Fetched Successfully";
       })
-      .addCase(getAllPosts.rejected, (state,action) => {
+      .addCase(getAllPosts.rejected, (state, action) => {
         state.isError = false;
         state.isLoading = false;
         state.post = [];
-        state.message = action.payload
+        state.message = action.payload;
       });
   },
 });
 
-
-export default postsSlice.reducer
+export default postsSlice.reducer;
